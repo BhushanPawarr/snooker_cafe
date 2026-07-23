@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/20 bg-felt text-white">
+    <header className="sticky top-0 z-40 border-b border-gold/20 bg-felt/90 text-white backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="font-display text-xl font-semibold tracking-wide text-gold-light">
           Snooker Den
@@ -20,7 +20,7 @@ export default function Header() {
         </nav>
         <Link
           href="/book"
-          className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-felt-dark transition hover:bg-gold-light"
+          className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-felt-dark transition hover:scale-105 hover:bg-gold-light"
         >
           Book a Table
         </Link>
