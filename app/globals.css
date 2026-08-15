@@ -1,10 +1,11 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #f7f5ef;
-  --foreground: #16241c;
-  --felt: #0d3b26;
-  --felt-dark: #08281a;
+  --foreground: #161616;
+  --felt: #131313;
+  --felt-dark: #000000;
   --gold: #c9a227;
   --gold-light: #e2c766;
 }
@@ -20,11 +21,9 @@
   --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b120e;
-    --foreground: #ecebe5;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ece7da;
 }
 
 html {
@@ -34,4 +33,49 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 25%,
+    #fff8e1 50%,
+    var(--gold-light) 75%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 5s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, -6%) scale(1.08);
+  }
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: drift 14s ease-in-out infinite;
+  pointer-events: none;
 }

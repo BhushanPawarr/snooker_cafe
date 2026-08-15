@@ -1,17 +1,35 @@
 import Link from "next/link";
-import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { OPEN_HOUR, CLOSE_HOUR } from "@/lib/slots";
 import HeroBackground from "@/components/HeroBackground";
 import ScrollReveal from "@/components/ScrollReveal";
+import Stats from "@/components/Stats";
+import WhySnooker from "@/components/WhySnooker";
+import Legends from "@/components/Legends";
+import Testimonials from "@/components/Testimonials";
+import Gallery from "@/components/Gallery";
+import VideoShowcase from "@/components/VideoShowcase";
+import MenuPreview from "@/components/MenuPreview";
+import FAQ from "@/components/FAQ";
 
 export const dynamic = "force-dynamic";
 
+const FALLBACK_TABLES = [
+  { id: 1, name: "Table 1", hourlyRate: 150 },
+  { id: 2, name: "Table 2", hourlyRate: 150 },
+  { id: 3, name: "Table 3", hourlyRate: 150 },
+  { id: 4, name: "Table 4", hourlyRate: 200 },
+  { id: 5, name: "Table 5", hourlyRate: 200 },
+  { id: 6, name: "Table 6", hourlyRate: 250 },
+];
+
 export default async function Home() {
-  const tables = await prisma.table.findMany({
-    where: { isActive: true },
-    orderBy: { id: "asc" },
-  });
+  const tables = await prisma.table
+    .findMany({
+      where: { isActive: true },
+      orderBy: { id: "asc" },
+    })
+    .catch(() => FALLBACK_TABLES);
 
   return (
     <div>
@@ -82,6 +100,9 @@ export default async function Home() {
         </div>
       </section>
 
+      <Stats />
+      <WhySnooker />
+
       {/* Tables & Pricing */}
       <section id="tables" className="bg-black/[.03] py-20 dark:bg-white/[.03]">
         <div className="mx-auto max-w-6xl px-6">
@@ -113,50 +134,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <ScrollReveal direction="up">
-          <h2 className="font-display text-3xl font-bold">Inside the Cafe</h2>
-          <p className="mt-2 text-foreground/70">
-            A peek at the space.
-          </p>
-        </ScrollReveal>
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <ScrollReveal direction="left" className="sm:col-span-2">
-            <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/gallery/photo-1.jpg"
-                alt="Snooker tables set up and ready to play at Snooker Den"
-                fill
-                sizes="(min-width: 640px) 1152px, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="left" delay={0.1}>
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/gallery/photo-2.jpg"
-                alt="Players enjoying a game at Snooker Den"
-                fill
-                sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="left" delay={0.2}>
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/gallery/photo-3.jpg"
-                alt="Snooker Den table close-up with balls racked"
-                fill
-                sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <Legends />
+      <Testimonials />
+      <Gallery />
+      <VideoShowcase />
+
+      <MenuPreview />
+      <FAQ />
 
       {/* Hours */}
       <section id="hours" className="bg-black/[.03] py-20 dark:bg-white/[.03]">

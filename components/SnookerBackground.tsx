@@ -29,8 +29,8 @@ export default function SnookerBackground() {
       aria-hidden
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
-      {/* felt cloth base */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#12563a_0%,_#0d3b26_45%,_#08281a_100%)]" />
+      {/* table base */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#1c1c1c_0%,_#101010_45%,_#000000_100%)]" />
       <div
         className="absolute inset-0 opacity-[0.06] mix-blend-overlay"
         style={{

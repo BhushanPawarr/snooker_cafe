@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
+const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}
+      className={`${manrope.variable} ${playfair.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <Header />
